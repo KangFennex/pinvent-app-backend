@@ -19,14 +19,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors({
     origin: ["http://localhost:3000", "https://pinvent-app-kangkm.vercel.app"],
+    methods: 'POST, GET, PUT',
+    allowedHeaders: 'Content-Type',
     credentials: true
 }));
-app.options("/", (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://pinvent-app-kangkm.vercel.app");
-    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.sendStatus(204);
-});
+
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
